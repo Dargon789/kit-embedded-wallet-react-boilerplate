@@ -23,7 +23,7 @@
     "@walletconnect/ethereum-provider": "^2.19.1",
     "@walletconnect/modal": "^2.7.0",
     "@walletconnect/modal-core": "^2.7.0",
-    "boilerplate-design-system": "link:../boilerplate-design-system",
+    "boilerplate-design-system": "github:0xsequence-demos/boilerplate-design-system#58a8cde0ec89e3c17fd853fb2a097e206d699a48",
     "ethers": "6.13.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
