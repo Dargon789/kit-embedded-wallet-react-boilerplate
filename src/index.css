@@ -1,14 +1,13 @@
+@import "tailwindcss";
 @import "boilerplate-design-system/styles/index.css";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@source "../node_modules/boilerplate-design-system";
+
+.contents-layered {
+  @apply grid grid-cols-1 grid-rows-1;
+}
 
 @layer utilities {
   [data-visible] {
     @apply col-start-1 row-start-1 data-[visible='false']:invisible;
-  }
-
-  .contents-layered {
-    @apply grid grid-cols-1 grid-rows-1;
   }
 }
