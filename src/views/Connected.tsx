@@ -4,7 +4,8 @@ import TestSignMessage from "../components/TestSignMessage";
 import TestVerifyMessage from "../components/TestVerifyMessage";
 import TestSendTransaction from "../components/TestSendTransaction";
 
-import { Group, Card } from "boilerplate-design-system";
+import { Group, Card } from "@0xsequence-demos/boilerplate-design-system";
+import { TestLinkWallet } from "../components/TestLinkWallet";
 
 export function Connected() {
   const { address, chain, chainId } = useAccount();
@@ -61,6 +62,7 @@ export function Connected() {
           <TestSendTransaction chainId={chainId} />
         </Card>
       </Group>
+      <TestLinkWallet />
     </div>
   );
 }

@@ -7,7 +7,7 @@ import {
   Form,
   FormHandler,
   useStoreData,
-} from "boilerplate-design-system";
+} from "@0xsequence-demos/boilerplate-design-system";
 
 interface TxnRespose {
   hash: string;
@@ -72,8 +72,7 @@ const TestSendTransaction = (props: { chainId: number }) => {
             className="self-start disabled:opacity-50 contents-layered"
             disabled={isPending}
           >
-            <span data-visible={!isPending}>Send Test Transaction</span>
-            <span data-visible={isPending}>Sending...</span>
+            <span>{!isPending ? `Send Test Transaction` : `Sending...`}</span>
           </Button>
         </Form>
       </Card>

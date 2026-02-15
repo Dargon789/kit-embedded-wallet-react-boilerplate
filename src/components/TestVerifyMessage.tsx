@@ -1,4 +1,3 @@
-import { Spinner } from "@0xsequence/design-system";
 import {
   Form,
   Button,
@@ -12,12 +11,12 @@ import {
   useStoreData,
   setStoreData,
   useForm,
-} from "boilerplate-design-system";
+} from "@0xsequence-demos/boilerplate-design-system";
 
 import { usePublicClient } from "wagmi";
 import { z } from "zod";
 // import { type Signature } from "viem";
-import type { FormHandler } from "boilerplate-design-system";
+import type { FormHandler } from "@0xsequence-demos/boilerplate-design-system";
 // Define Hex as a string with a hex pattern
 const Hex = z.string().regex(/^0x[0-9a-fA-F]+$/, "Invalid hex format");
 
@@ -58,19 +57,9 @@ const schemaVerifyMessage = z.object({
   ]),
 });
 
-// type ReturnData = {
-//   address: `0x${string}`;
-//   message: string;
-//   signature: `0x${string}` | Uint8Array | Signature;
-// };
-
 const TestVerifyMessage = (props: { chainId: number }) => {
   const { chainId } = props;
   const publicClient = usePublicClient({ chainId });
-
-  // const values = useStoreData<{ signature: string; message: string }>(
-  //   "signMessage",
-  // );
 
   const handleVerifyMessage: FormHandler = async (_, data) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -104,60 +93,62 @@ const TestVerifyMessage = (props: { chainId: number }) => {
 
   return (
     <div className="contents-layered">
-      <Form
-        name="verifyMessage"
-        schema={schemaVerifyMessage}
-        onAction={handleVerifyMessage}
-        data-visible={value === "idle"}
-        className="flex flex-col gap-4"
-      >
-        <FormErrors />
-        <Field name="address">
-          <Label>Address</Label>
-          <Input className="w-full" />
-          <FieldError />
-        </Field>
-
-        <Field name="message">
-          <Label>Message</Label>
-          <Input className="w-full" />
-          <FieldError />
-        </Field>
-
-        <Field name="signature">
-          <Label>Signature</Label>
-          <Input className="w-full" />
-          <FieldError />
-        </Field>
-
-        <Button
-          type="submit"
-          variant="primary"
-          subvariants={{ padding: "comfortable" }}
-          className="self-start"
+      {" "}
+      {value === "idle" ? (
+        <Form
+          name="verifyMessage"
+          schema={schemaVerifyMessage}
+          onAction={handleVerifyMessage}
+          className="flex flex-col gap-4"
         >
-          Verify
-        </Button>
-      </Form>
+          <FormErrors />
+          <Field name="address">
+            <Label>Address</Label>
+            <Input className="w-full" />
+            <FieldError />
+          </Field>
 
-      <Card className="flex flex-col" data-visible={value !== "idle"}>
-        <div className="flex flex-1 items-center justify-center flex-col gap-4">
-          <VerificationStatus isValidSignature={value} />
+          <Field name="message">
+            <Label>Message</Label>
+            <Input className="w-full" />
+            <FieldError />
+          </Field>
+
+          <Field name="signature">
+            <Label>Signature</Label>
+            <Input className="w-full" />
+            <FieldError />
+          </Field>
+
           <Button
-            variant="tertiary"
-            onClick={() => {
-              updateFields("verifyMessage", {
-                address: "",
-                message: "",
-                signature: "",
-              });
-              setStoreData("verifyMessage", "idle");
-            }}
+            type="submit"
+            variant="primary"
+            subvariants={{ padding: "comfortable" }}
+            className="self-start"
           >
-            Reset
+            Verify
           </Button>
-        </div>
-      </Card>
+        </Form>
+      ) : (
+        <Card className="flex flex-col">
+          <div className="flex flex-1 items-center justify-center flex-col gap-4">
+            <VerificationStatus isValidSignature={value} />
+            <Button
+              variant="tertiary"
+              onClick={() => {
+                updateFields("verifyMessage", {
+                  address: "",
+                  message: "",
+                  signature: "",
+                });
+                setStoreData("verifyMessage", "idle");
+              }}
+            >
+              Reset
+            </Button>
+          </div>
+        </Card>
+      )}
     </div>
   );
 };
@@ -172,12 +163,7 @@ function VerificationStatus({
       return <span>Nothing verified yet</span>;
 
     case "pending":
-      return (
-        <span className="gap-2 flex items-center">
-          <Spinner size="sm" />
-          Verifying...
-        </span>
-      );
+      return <span className="gap-2 flex items-center">Verifying...</span>;
 
     case "valid":
       return (
