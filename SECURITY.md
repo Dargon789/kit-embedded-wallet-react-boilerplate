@@ -13,8 +13,8 @@ currently being supported with security updates.
 
 ## Reporting a Vulnerability
 
-Use this section to tell people how to report a vulnerability.
+We take all security vulnerabilities seriously. Thank you for improving the security of our project. We appreciate your efforts and responsible disclosure and will make every effort to acknowledge your contributions.
 
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+To report a security vulnerability, please use the `Report a vulnerability` button on our GitHub repository.
+
+You can expect to receive a response from us within 48 hours. If the issue is confirmed, we will release a patch as soon as possible depending on complexity.
