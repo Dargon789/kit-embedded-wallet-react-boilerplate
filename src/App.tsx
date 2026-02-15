@@ -5,6 +5,7 @@ import { useAccount, useDisconnect, useSwitchChain } from "wagmi";
 import { NotConnected } from "./views/NotConnected";
 import { Connected } from "./views/Connected";
 import { SequenceBoilerplate } from "@0xsequence-demos/boilerplate-design-system";
+import { Analytics } from "@vercel/analytics/react";
 
 export default function Layout() {
   return (
@@ -24,6 +25,7 @@ function App() {
       wagmi={{ useAccount, useDisconnect, useSwitchChain }}
     >
       {isConnected ? <Connected /> : <NotConnected />}
+      <Analytics />
     </SequenceBoilerplate>
   );
 }
