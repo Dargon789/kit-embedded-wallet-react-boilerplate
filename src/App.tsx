@@ -5,10 +5,10 @@
     const projectAccessKey = import.meta.env.VITE_PROJECT_ACCESS_KEY
     const waasConfigKey = import.meta.env.VITE_WAAS_CONFIG_KEY // Pass in your waasConfigKey
     const enableConfirmationModal = true // change to your preference
-    const googleClientId = 'YOUR_GOOGLE_CLIENT_ID' // Google Client ID
-    const appleClientId = 'YOUR_APPLE_CLIENT_ID' // Apple Client ID
-    const appleRedirectURI = 'YOUR_APP_SCHEME://auth' // Apple Redirect URI
-    const walletConnectProjectId = 'walletConnectProjectId' // Pass in your WalletConnect Project ID
+    const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID
+    const appleClientId = import.meta.env.VITE_APPLE_CLIENT_ID
+    const appleRedirectURI = import.meta.env.VITE_APPLE_REDIRECT_URI
+    const walletConnectProjectId = import.meta.env.VITE_WALLET_CONNECT_PROJECT_ID
 
     const config = createConfig('waas', {
       projectAccessKey,
