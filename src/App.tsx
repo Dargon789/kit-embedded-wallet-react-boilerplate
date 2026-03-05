@@ -1,48 +1,62 @@
+import { SequenceConnect, SequenceConnectInlineProvider, createConfig } from '@0xsequence/connect'
 
-  import { SequenceConnect, createConfig } from '@0xsequence/connect'
+export function App() {
+  const projectAccessKey = "AQAAAAAAAJbd_5JOcE50AqglZCtvu51YlGI"
+  const waasConfigKey = "eyJwcm9qZWN0SWQiOjM4NjIxLCJycGNTZXJ2ZXIiOiJodHRwczovL3dhYXMuc2VxdWVuY2UuYXBwIn0="
+  const googleClientId = "YOUR_GOOGLE_CLIENT_ID"
+  const appleClientId = "YOUR_APPLE_CLIENT_ID"
+  const appleRedirectURI = window.location.origin + window.location.pathname
+  const xClientId = "YOUR_X_CLIENT_ID"
+  const xRedirectURI = window.location.origin + "/auth-callback-X"
+  const epicAuthUrl = "YOUR_EPIC_AUTH_URL"
+  const walletConnectProjectId = "YOUR_WALLETCONNECT_PROJECT_ID"
 
-  export function App() {
-    const projectAccessKey = import.meta.env.VITE_PROJECT_ACCESS_KEY
-    const waasConfigKey = import.meta.env.VITE_WAAS_CONFIG_KEY // Pass in your waasConfigKey
-    const enableConfirmationModal = true // change to your preference
-    const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID
-    const appleClientId = import.meta.env.VITE_APPLE_CLIENT_ID
-    const appleRedirectURI = import.meta.env.VITE_APPLE_REDIRECT_URI
-    const walletConnectProjectId = import.meta.env.VITE_WALLET_CONNECT_PROJECT_ID
+  const config = createConfig('waas', {
+    projectAccessKey,
+    waasConfigKey,
+    position: "center",
+    defaultTheme: "dark",
+    signIn: {
+      projectName: "Sign in",
+    },
+    defaultChainId: 137,
+    chainIds: [1, 11155111, 42170, 421614, 137, 1101, 80002, 8453, 84532, 10, 11155420, 43114, 43113, 19011, 40875, 56, 97, 660279, 37714555429, 1993, 81457, 168587773, 33111, 100, 37084624, 1946, 21000000, 8333, 33139, 13371, 13473, 1482601649, 1868, 40, 41, 1284, 1287, 42793, 128123, 5031, 50312, 28802, 6252, 10143, 5042002],
+    appName: "Sign in",
+    email: true,
+    google: {
+      clientId: googleClientId
+    },
+    apple: {
+      clientId: appleClientId,
+      redirectURI: appleRedirectURI
+    },
+    X: {
+      clientId: xClientId,
+      redirectURI: xRedirectURI
+    },
+    epic: {
+      authUrl: epicAuthUrl
+    },
+    guest: true,
+    twitch: true,
+    walletConnect: {
+      projectId: walletConnectProjectId
+    },
+    coinbase: true,
+    metaMask: true,
+    wagmiConfig: {
+      multiInjectedProviderDiscovery: true,
+    },
+    enableConfirmationModal: true,
+    renderInline: true,
+    onConnectSuccess: (address: string) => {
+      console.log('Connected with address:', address)
+    },
+  })
 
-    const config = createConfig('waas', {
-      projectAccessKey,
-      position: "center",
-      defaultTheme: "dark",
-      signIn: {
-        projectName: "sequence.app",
-      },
-      defaultChainId: 421614,
-      chainIds: [1, 10, 40, 41, 56, 97, 100, 137, 143, 1101, 1284, 1287, 1868, 1946, 1993, 5031, 6252, 8333, 8453, 10143, 19011, 24101, 28802, 33111, 33139, 40875, 42161, 42170, 42793, 43113, 43114, 50312, 80002, 81457, 84532, 127823, 128123, 421614, 660279, 747474, 5042002, 11155111, 11155420, 21000000, 37084624, 168587773, 1482601649, 37714555429],
-      appName: "sequence.app",
-      email: true,
-      waasConfigKey,
-      google: {
-        clientId: googleClientId
-      },
-      apple: {
-        clientId: appleClientId,
-        redirectURI: appleRedirectURI
-      },
-      walletConnect: {
-        projectId: walletConnectProjectId
-      },
-      coinbase: true,
-      metaMask: true,
-      wagmiConfig: {
-        multiInjectedProviderDiscovery: true,
-      },
-      enableConfirmationModal
-    })
-
-    return (
-      <SequenceConnect config={config}>
-        <MyPage />
-      </SequenceConnect>
-    );
+  return (
+    <SequenceConnect config={config}>
+      <SequenceConnectInlineProvider config={config} />
+    </SequenceConnect>
+  )
 }
