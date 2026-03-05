@@ -1,15 +1,15 @@
 import { SequenceConnect, SequenceConnectInlineProvider, createConfig } from '@0xsequence/connect'
 
 export function App() {
-  const projectAccessKey = "AQAAAAAAAJbd_5JOcE50AqglZCtvu51YlGI"
-  const waasConfigKey = "eyJwcm9qZWN0SWQiOjM4NjIxLCJycGNTZXJ2ZXIiOiJodHRwczovL3dhYXMuc2VxdWVuY2UuYXBwIn0="
-  const googleClientId = "YOUR_GOOGLE_CLIENT_ID"
-  const appleClientId = "YOUR_APPLE_CLIENT_ID"
+  const projectAccessKey = import.meta.env.VITE_PROJECT_ACCESS_KEY
+  const waasConfigKey = import.meta.env.VITE_WAAS_CONFIG_KEY
+  const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID
+  const appleClientId = import.meta.env.VITE_APPLE_CLIENT_ID
   const appleRedirectURI = window.location.origin + window.location.pathname
-  const xClientId = "YOUR_X_CLIENT_ID"
+  const xClientId = import.meta.env.VITE_X_CLIENT_ID
   const xRedirectURI = window.location.origin + "/auth-callback-X"
-  const epicAuthUrl = "YOUR_EPIC_AUTH_URL"
-  const walletConnectProjectId = "YOUR_WALLETCONNECT_PROJECT_ID"
+  const epicAuthUrl = import.meta.env.VITE_EPIC_AUTH_URL
+  const walletConnectProjectId = import.meta.env.VITE_WALLET_CONNECT_PROJECT_ID
 
   const config = createConfig('waas', {
     projectAccessKey,
