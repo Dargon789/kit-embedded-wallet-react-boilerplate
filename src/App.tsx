@@ -5,7 +5,7 @@ export function App() {
   const waasConfigKey = import.meta.env.VITE_WAAS_CONFIG_KEY
   const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID
   const appleClientId = import.meta.env.VITE_APPLE_CLIENT_ID
-  const appleRedirectURI = window.location.origin + window.location.pathname
+  const appleRedirectURI = window.location.origin + '/auth-callback-apple'
   const xClientId = import.meta.env.VITE_X_CLIENT_ID
   const xRedirectURI = window.location.origin + "/auth-callback-X"
   const epicAuthUrl = import.meta.env.VITE_EPIC_AUTH_URL
